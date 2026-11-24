@@ -19,6 +19,14 @@ export const works: Work[] = [
     cover: "/works/weapon-lineart-03.png", gallery: ["/works/weapon-lineart-01.png", "/works/weapon-lineart-02.png"], tools: ["Digital sketch", "Photoshop"], featured: true,
   },
   {
+    slug: "the-eye-blade-ai-concept",
+    title: { id: "The Eye Blade — AI Concept", en: "The Eye Blade — AI Concept" },
+    summary: { id: "Referensi visual AI untuk senjata asimetris dengan eye core dan guard bronze.", en: "AI visual reference for an asymmetric weapon with an eye core and bronze guard." },
+    body: { id: "Gambar ini dipakai sebagai referensi arah visual, lalu diterjemahkan ulang menjadi preview 3D prosedural yang ringan dan interaktif.", en: "This image is used as a visual direction reference and reinterpreted as a lightweight, interactive procedural 3D preview." },
+    category: "gameart", tags: ["AI concept", "weapon", "visual reference"], year: 2026,
+    cover: "/works/reference/ai-weapon-concept.jpg", tools: ["AI reference", "Three.js"], featured: true,
+  },
+  {
     slug: "weapon-studio-presentation",
     title: { id: "Sword Studio Presentation", en: "Sword Studio Presentation" },
     summary: { id: "Presentasi asset senjata dengan latar studio dan warna yang kontras.", en: "A studio-style weapon asset presentation with strong color contrast." },

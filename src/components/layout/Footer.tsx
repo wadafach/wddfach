@@ -36,11 +36,8 @@ export function Footer() {
       <div className="shell grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="relative grid size-7 place-items-center">
-              <span className="absolute size-7 rounded-full border border-ember/35" />
-              <span className="size-2 rounded-full bg-ember" />
-            </span>
-            <span className="font-display text-base font-semibold">{site.name}</span>
+            <img src="/brand/sword-mark.png" alt="" className="h-7 w-auto object-contain" />
+            <img src="/brand/wddfach-logotype.png" alt={site.name} className="h-7 w-auto object-contain" />
           </div>
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-ink-soft">
             {site.tagline[locale]}

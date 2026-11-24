@@ -78,13 +78,18 @@ export function Header() {
             aria-label={`${site.name} — beranda`}
           >
             <span className="relative grid size-8 place-items-center">
-              {/* tanda sederhana: inti + orbit, digambar dengan CSS */}
-              <span className="absolute size-8 rounded-full border border-ember/35 transition-transform duration-500 group-hover:rotate-45" />
-              <span className="size-2.5 rounded-full bg-ember shadow-[0_0_14px_2px_rgba(255,170,60,0.55)]" />
+              {/* Logo resmi: sword-mark.png dari aset user. */}
+              <img
+                src="/brand/sword-mark.png"
+                alt=""
+                className="h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-3"
+              />
             </span>
-            <span className="font-display text-[17px] font-semibold tracking-tight">
-              {site.name}
-            </span>
+            <img
+              src="/brand/wddfach-logotype.png"
+              alt={site.name}
+              className="h-8 w-auto object-contain"
+            />
           </Link>
 
           {/* nav desktop */}
