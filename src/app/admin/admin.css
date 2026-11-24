@@ -1,0 +1,161 @@
+/* ============================================================
+   Admin surfaces — terang, padat, tanpa dekorasi.
+   Dipisah dari globals.css supaya token situs publik (gelap, kosmik)
+   tidak tercampur dengan kebutuhan panel kerja.
+   ============================================================ */
+
+.admin-root {
+  background-color: var(--color-ws-bg);
+  color: var(--color-ws-ink);
+  font-family: var(--font-sans);
+}
+
+/* override dasar yang di-inherit dari body situs publik */
+.admin-root h1,
+.admin-root h2,
+.admin-root h3,
+.admin-root h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.018em;
+  color: var(--color-ws-ink);
+}
+
+.admin-root ::selection {
+  background: #ffd9a3;
+  color: #131a2c;
+}
+
+.admin-root :focus-visible {
+  outline: 2px solid #ff7a18;
+  outline-offset: 2px;
+}
+
+.admin-card {
+  background: var(--color-ws-panel);
+  border: 1px solid var(--color-ws-line);
+  border-radius: 0.875rem;
+}
+
+.admin-input {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid var(--color-ws-line);
+  background: #fff;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-ws-ink);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.admin-input::placeholder { color: var(--color-ws-ink-mute); }
+.admin-input:focus {
+  outline: none;
+  border-color: #ff9a3c;
+  box-shadow: 0 0 0 3px rgba(255, 154, 60, 0.18);
+}
+
+.admin-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ws-ink-mute);
+  margin-bottom: 0.4rem;
+}
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  height: 2.25rem;
+  padding-inline: 0.9rem;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.admin-btn:active { transform: scale(0.98); }
+.admin-btn:disabled { opacity: 0.45; pointer-events: none; }
+
+.admin-btn-primary {
+  background: #131a2c;
+  color: #fff;
+}
+.admin-btn-primary:hover { background: #1f2a44; }
+
+.admin-btn-accent {
+  background: #ff7a18;
+  color: #fff;
+}
+.admin-btn-accent:hover { background: #ff9a3c; }
+
+.admin-btn-quiet {
+  border: 1px solid var(--color-ws-line);
+  color: var(--color-ws-ink-soft);
+  background: #fff;
+}
+.admin-btn-quiet:hover { border-color: #c6ccdc; color: var(--color-ws-ink); }
+
+.admin-btn-danger {
+  border: 1px solid #f3c9c9;
+  color: #b4322f;
+  background: #fff;
+}
+.admin-btn-danger:hover { background: #fdf2f2; border-color: #e8a9a9; }
+
+.admin-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 0.6rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-ws-ink-soft);
+  transition: background-color 0.15s, color 0.15s;
+}
+.admin-tab:hover { background: #eceff7; color: var(--color-ws-ink); }
+.admin-tab[aria-selected="true"] {
+  background: #131a2c;
+  color: #fff;
+}
+
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8125rem;
+}
+.admin-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ws-ink-mute);
+  font-weight: 500;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--color-ws-line);
+  background: #fafbfe;
+}
+.admin-table td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid #eef0f6;
+  vertical-align: middle;
+}
+.admin-table tr:last-child td { border-bottom: 0; }
+.admin-table tbody tr:hover td { background: #fafbfe; }
