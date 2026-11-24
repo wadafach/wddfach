@@ -62,7 +62,7 @@ export interface CosmicSceneProps {
 export default function CosmicScene({
   level,
   active = true,
-  planet = true,
+  planet = false,
   artifact = false,
   meteor = 1,
   parallax = true,

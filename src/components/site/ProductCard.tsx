@@ -34,7 +34,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             className="size-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.045]"
           />
         ) : (
-          <Placeholder className="size-full" label={isService ? "jasa" : "produk digital"} />
+          <Placeholder className="size-full" label={t(isService ? "svc.service" : "svc.digital", locale)} />
         )}
         <span
           className={cn(

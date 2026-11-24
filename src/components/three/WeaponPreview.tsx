@@ -4,6 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { ContactShadows, Environment, OrbitControls, Sparkles } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
+import { useSettings } from "@/lib/store";
 
 /**
  * Interpretasi 3D low-poly dari sketch weapon user:
@@ -83,6 +84,9 @@ function WeaponModel() {
 }
 
 export function WeaponPreview() {
+  const locale = useSettings((s) => s.locale);
+  const en = locale === "en";
+
   return (
     <div className="relative h-[430px] overflow-hidden rounded-2xl border border-line bg-[#080b14]">
       <Canvas camera={{ position: [0.3, 0.3, 7.2], fov: 38 }} dpr={[1, 1.7]} gl={{ antialias: true, alpha: true }}>
@@ -100,7 +104,7 @@ export function WeaponPreview() {
         <OrbitControls enablePan={false} minDistance={4.5} maxDistance={10} autoRotate autoRotateSpeed={0.45} />
       </Canvas>
       <div className="pointer-events-none absolute bottom-4 left-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-        Drag untuk rotate · scroll untuk zoom
+        {en ? "Drag to rotate · scroll to zoom" : "Geser untuk memutar · scroll untuk zoom"}
       </div>
       <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-ember/40 bg-void/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-ember backdrop-blur">
         3D preview

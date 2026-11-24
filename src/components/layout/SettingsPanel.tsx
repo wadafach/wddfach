@@ -53,8 +53,10 @@ export function SettingsPanel() {
           <div>
             <h2 className="font-display text-lg font-semibold">{t("settings.title", locale)}</h2>
             <p className="mt-1 font-mono text-[11px] text-ink-mute">
-              {q.lowTier ? "perangkat kelas menengah" : "perangkat kuat"}
-              {q.touch ? " · sentuh" : ""} · {q.cores} core
+              {locale === "id"
+                ? q.lowTier ? "perangkat kelas menengah" : "perangkat kuat"
+                : q.lowTier ? "mid-range device" : "high-end device"}
+              {q.touch ? (locale === "id" ? " · sentuh" : " · touch") : ""} · {q.cores} {locale === "id" ? "core" : "cores"}
             </p>
           </div>
           <button
@@ -109,8 +111,8 @@ export function SettingsPanel() {
           <p className="mt-2.5 font-mono text-[10.5px] leading-relaxed text-ink-mute">
             {scene === "auto" && t("settings.autoNote", locale)}
             {scene === "full" && (q.lowTier ? "⚠ " : "") + (locale === "id"
-              ? "Bintang, planet, meteor, dan kamera ikut scroll."
-              : "Stars, planets, meteors, and camera scroll parallax.")}
+              ? "Bintang, meteor, dan kamera mengikuti scroll."
+              : "Stars, meteors, and camera follow scroll parallax.")}
             {scene === "reduced" && (locale === "id"
               ? "Bintang lebih sedikit, tanpa efek lanjutan."
               : "Fewer stars, no extra effects.")}

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useSettings } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
@@ -132,8 +131,6 @@ export function SectionHead({
 export function LangSwitch({ compact = false }: { compact?: boolean }) {
   const locale = useSettings((s) => s.locale);
   const setLocale = useSettings((s) => s.setLocale);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   return (
     <div
@@ -142,7 +139,7 @@ export function LangSwitch({ compact = false }: { compact?: boolean }) {
       aria-label="Bahasa / Language"
     >
       {(["id", "en"] as const).map((l) => {
-        const on = mounted && locale === l;
+        const on = locale === l;
         return (
           <button
             key={l}
