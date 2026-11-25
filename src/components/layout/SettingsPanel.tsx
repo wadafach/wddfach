@@ -4,10 +4,24 @@ import { useEffect, useRef } from "react";
 import { useSettings, useUi } from "@/lib/store";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { SceneLevel } from "@/lib/store";
 import { useQuality } from "@/components/three/quality";
 
-const levels: SceneLevel[] = ["full", "reduced", "off"];
+const levels = ["full", "reduced", "off"] as const;
+
+const sceneDetails = {
+  full: {
+    id: "Bintang, meteor, dan parallax aktif.",
+    en: "Stars, meteors, and parallax are active.",
+  },
+  reduced: {
+    id: "Bintang lebih sedikit, gerakan lebih ringan.",
+    en: "Fewer stars with lighter motion.",
+  },
+  off: {
+    id: "Tanpa WebGL; hanya gradien CSS yang hemat baterai.",
+    en: "No WebGL; CSS gradient only for best battery life.",
+  },
+} as const;
 
 /** Panel pengaturan: bahasa, kekuatan efek 3D, kurangi animasi. */
 export function SettingsPanel() {
@@ -97,28 +111,26 @@ export function SettingsPanel() {
                 key={l}
                 onClick={() => setScene(l)}
                 aria-pressed={scene === l}
+                type="button"
                 className={cn(
-                  "rounded-xl border px-3 py-2.5 text-[12.5px] font-medium transition-colors",
+                  "min-h-14 rounded-xl border px-3 py-2.5 text-left text-[12.5px] font-medium transition-colors",
                   scene === l
                     ? "border-ember/60 bg-ember/12 text-ember"
                     : "border-line bg-surface-2/40 text-ink-soft hover:border-ink-mute",
                 )}
               >
-                {t(`settings.scene.${l}` as "settings.scene.full", locale)}
+                <span className="block">{t(`settings.scene.${l}` as "settings.scene.full", locale)}</span>
+                <span className="mt-1 block text-[10.5px] font-normal leading-snug text-ink-mute">
+                  {sceneDetails[l][locale]}
+                </span>
               </button>
             ))}
           </div>
           <p className="mt-2.5 font-mono text-[10.5px] leading-relaxed text-ink-mute">
             {scene === "auto" && t("settings.autoNote", locale)}
-            {scene === "full" && (q.lowTier ? "⚠ " : "") + (locale === "id"
-              ? "Bintang, meteor, dan kamera mengikuti scroll."
-              : "Stars, meteors, and camera follow scroll parallax.")}
-            {scene === "reduced" && (locale === "id"
-              ? "Bintang lebih sedikit, tanpa efek lanjutan."
-              : "Fewer stars, no extra effects.")}
-            {scene === "off" && (locale === "id"
-              ? "Murni gradien CSS. Paling hemat baterai."
-              : "CSS gradient only. Best for battery.")}
+            {scene === "full" && sceneDetails.full[locale]}
+            {scene === "reduced" && sceneDetails.reduced[locale]}
+            {scene === "off" && sceneDetails.off[locale]}
           </p>
         </Setting>
 

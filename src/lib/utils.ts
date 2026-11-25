@@ -95,3 +95,35 @@ export function copyToClipboard(text: string) {
     return Promise.resolve(false);
   }
 }
+
+/** Open a destination in a new tab without navigating the current checkout page. */
+export function openExternalPreservingScroll(url: string) {
+  if (typeof window === "undefined" || !url) return;
+  const left = window.scrollX;
+  const top = window.scrollY;
+  try {
+    window.sessionStorage.setItem(
+      `wddfach.scroll.${window.location.pathname}`,
+      JSON.stringify({ left, top, savedAt: Date.now() }),
+    );
+  } catch {}
+  const popup = window.open(url, "_blank", "noopener,noreferrer");
+
+  // If a browser blocks window.open, use a temporary target=_blank anchor.
+  // Never assign window.location: that would reload checkout and reset scroll.
+  if (!popup) {
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  const restore = () => window.scrollTo({ left, top, behavior: "auto" });
+  requestAnimationFrame(restore);
+  window.setTimeout(restore, 120);
+  window.setTimeout(restore, 500);
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { socials } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { useSettings } from "@/lib/store";
+import { openExternalPreservingScroll } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function HomeCta() {
@@ -43,6 +44,11 @@ export function HomeCta() {
               </Link>
               <a
                 href={socials.whatsapp || "#"}
+                onClick={(event) => {
+                  if (!socials.whatsapp) return;
+                  event.preventDefault();
+                  openExternalPreservingScroll(socials.whatsapp);
+                }}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="inline-flex h-12 items-center rounded-full border border-line px-6 text-sm font-semibold text-ink-soft transition-colors hover:border-ink-mute hover:text-ink"

@@ -6,8 +6,9 @@ import Link from "next/link";
 import { site, socials, payment, activePayChannels, isPaymentConfigured } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { useCart, useSettings, cartTotal } from "@/lib/store";
-import { cn, copyToClipboard, formatIDR, groupDigits, isEmail, makeOrderCode, toWaNumber } from "@/lib/utils";
+import { cn, copyToClipboard, formatIDR, groupDigits, isEmail, makeOrderCode, openExternalPreservingScroll, toWaNumber } from "@/lib/utils";
 import { BankCard } from "@/components/layout/CartDrawer";
+import { publicAsset } from "@/lib/paths";
 
 type Channel = "whatsapp" | "email";
 
@@ -37,6 +38,26 @@ export function CheckoutPage() {
   const [copiedCode, setCopiedCode] = useState(false);
 
   useEffect(() => setMounted(true), []);
+
+  // Mobile browsers may recreate this page when returning from WhatsApp.
+  // Restore the exact checkout position saved by openExternalPreservingScroll.
+  useEffect(() => {
+    if (!mounted) return;
+    const restore = () => {
+      try {
+        const raw = window.sessionStorage.getItem(`wddfach.scroll.${window.location.pathname}`);
+        if (!raw) return;
+        const saved = JSON.parse(raw) as { left?: number; top?: number; savedAt?: number };
+        if (!saved.savedAt || Date.now() - saved.savedAt > 10 * 60 * 1000) return;
+        window.requestAnimationFrame(() =>
+          window.scrollTo({ left: saved.left ?? 0, top: saved.top ?? 0, behavior: "auto" }),
+        );
+      } catch {}
+    };
+    restore();
+    window.addEventListener("pageshow", restore);
+    return () => window.removeEventListener("pageshow", restore);
+  }, [mounted]);
 
   const list = mounted ? items : [];
   const total = useMemo(() => cartTotal(list), [list]);
@@ -106,6 +127,11 @@ export function CheckoutPage() {
   const waHref = proofWhatsapp
     ? `https://wa.me/${toWaNumber(proofWhatsapp)}?text=${encodeURIComponent(proofMessage)}`
     : "";
+
+  const openProofWhatsApp = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    openExternalPreservingScroll(waHref);
+  };
 
   const goToStep2 = () => {
     setError("");
@@ -361,7 +387,7 @@ export function CheckoutPage() {
                               <div className="rounded-xl bg-white p-3">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                  src={payment.qrisImage}
+                                  src={publicAsset(payment.qrisImage)}
                                   alt="QRIS"
                                   className="size-40 object-contain"
                                 />
@@ -449,8 +475,10 @@ export function CheckoutPage() {
                     {channel === "whatsapp" && waHref && (
                       <a
                         href={waHref}
+                        onClick={openProofWhatsApp}
                         target="_blank"
                         rel="noreferrer noopener"
+                        aria-label={locale === "id" ? "Buka WhatsApp tanpa mengubah posisi halaman" : "Open WhatsApp without changing page position"}
                         className="inline-flex h-11 items-center gap-2 rounded-full bg-ember px-6 text-sm font-semibold text-[#12100c] transition-colors hover:bg-ember-soft"
                       >
                         {t("cta.sendProof", locale)} — WhatsApp

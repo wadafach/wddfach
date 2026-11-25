@@ -29,6 +29,7 @@ jobs:
         run: npm ci
       - name: Build the current Next.js site
         env:
+          NEXT_PUBLIC_BASE_PATH: /wddfach
           NEXT_PUBLIC_PAY_QRIS_IMAGE: /pay/qris.jpg
         run: npm run build
       - name: Mark static export for GitHub Pages

@@ -143,10 +143,11 @@ export function LangSwitch({ compact = false }: { compact?: boolean }) {
         return (
           <button
             key={l}
+            type="button"
             onClick={() => setLocale(l)}
             aria-pressed={on}
             className={cn(
-              "rounded-full px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.14em] transition-colors",
+              "min-h-10 min-w-10 rounded-full px-3 py-2 font-mono text-[10.5px] uppercase tracking-[0.14em] transition-colors",
               on ? "bg-ember text-[#12100c]" : "text-ink-mute hover:text-ink-soft",
             )}
           >

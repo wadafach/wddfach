@@ -7,6 +7,7 @@ import { site, socials } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { publicAsset } from "@/lib/paths";
 import { useSettings } from "@/lib/store";
+import { openExternalPreservingScroll } from "@/lib/utils";
 
 const shopeeLike = [
   { href: "/work", key: "nav.work" as const },
@@ -69,6 +70,11 @@ export function Footer() {
               <li key={c.label}>
                 <a
                   href={c.href}
+                  onClick={(event) => {
+                    if (c.label !== "WhatsApp") return;
+                    event.preventDefault();
+                    openExternalPreservingScroll(c.href);
+                  }}
                   target={c.href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noreferrer noopener"
                   className="group flex items-baseline gap-2 text-[13.5px] text-ink-soft transition-colors hover:text-ember"

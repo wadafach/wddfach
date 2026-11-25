@@ -5,7 +5,7 @@ import { useState } from "react";
 import { site, socials } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { useSettings } from "@/lib/store";
-import { toWaNumber } from "@/lib/utils";
+import { openExternalPreservingScroll, toWaNumber } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
@@ -44,6 +44,11 @@ export function ContactPage() {
         `${locale === "id" ? "Proyek baru" : "New project"} — ${form.need || "wddfach"}`,
       )}&body=${encodeURIComponent(message)}`
     : "";
+
+  const openWhatsApp = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    openExternalPreservingScroll(waHref);
+  };
 
   const needs = [
     { id: "UI/UX design", label: "UI/UX design" },
@@ -143,6 +148,7 @@ export function ContactPage() {
               {waHref && (
                 <a
                   href={waHref}
+                  onClick={openWhatsApp}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="inline-flex h-12 items-center gap-2 rounded-full bg-ember px-6 text-sm font-semibold text-[#12100c] transition-colors hover:bg-ember-soft"
@@ -186,6 +192,11 @@ export function ContactPage() {
                 <li key={c.k} className="py-3.5">
                   <a
                     href={c.href}
+                    onClick={(event) => {
+                      if (c.k !== "WhatsApp") return;
+                      event.preventDefault();
+                      openExternalPreservingScroll(c.href);
+                    }}
                     target={c.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noreferrer noopener"
                     className="group block"

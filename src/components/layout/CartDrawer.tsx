@@ -184,6 +184,9 @@ export function AddToCart({
     }
     add(product, locale);
     setJustAdded(true);
+    // Keep the order surface visible on mobile and desktop alike.
+    // The drawer is the canonical cart review before checkout.
+    setCartOpen(true);
     setTimeout(() => setJustAdded(false), 1400);
   };
 
