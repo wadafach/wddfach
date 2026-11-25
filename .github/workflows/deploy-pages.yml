@@ -27,8 +27,10 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build static public portfolio
-        run: npm run build:pages
+      - name: Build the current Next.js site
+        env:
+          NEXT_PUBLIC_PAY_QRIS_IMAGE: /pay/qris.jpg
+        run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

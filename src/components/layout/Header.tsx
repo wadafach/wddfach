@@ -8,6 +8,7 @@ import { site } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { useCart, useSettings, useUi } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { publicAsset } from "@/lib/paths";
 import { LangSwitch } from "@/components/ui/bits";
 
 const navItems = [
@@ -80,13 +81,13 @@ export function Header() {
             <span className="relative grid size-8 place-items-center">
               {/* Logo resmi: sword-mark.png dari aset user. */}
               <img
-                src="/brand/sword-mark.png"
+                src={publicAsset("/brand/sword-mark.png")}
                 alt=""
                 className="h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-3"
               />
             </span>
             <img
-              src="/brand/wddfach-logotype.png"
+              src={publicAsset("/brand/wddfach-logotype.png")}
               alt={site.name}
               className="h-8 w-auto object-contain"
             />

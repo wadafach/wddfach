@@ -6,6 +6,7 @@ import { t } from "@/lib/i18n";
 import { useSettings } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { cn, formatIDR } from "@/lib/utils";
+import { publicAsset } from "@/lib/paths";
 import { AddToCart } from "@/components/layout/CartDrawer";
 import { Placeholder } from "./WorkCard";
 
@@ -27,7 +28,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
         {hasImage ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src={product.cover}
+            src={publicAsset(product.cover ?? "")}
             alt={product.title[locale]}
             loading={index < 3 ? "eager" : "lazy"}
             decoding="async"

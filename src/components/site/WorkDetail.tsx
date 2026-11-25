@@ -8,6 +8,7 @@ import type { Work } from "@/lib/types";
 import { Reveal } from "@/components/ui/Reveal";
 import { Chip } from "@/components/ui/bits";
 import { Placeholder } from "@/components/site/WorkCard";
+import { publicAsset } from "@/lib/paths";
 
 /**
  * Halaman detail karya.
@@ -56,7 +57,7 @@ export function WorkDetail({ work }: { work: Work }) {
             {hasCover ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
-                src={work.cover}
+                src={publicAsset(work.cover)}
                 alt={work.title[locale]}
                 className="aspect-[16/9] w-full object-cover"
                 decoding="async"
@@ -83,7 +84,7 @@ export function WorkDetail({ work }: { work: Work }) {
                 <div key={i} className="overflow-hidden rounded-xl border border-line">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={src}
+                    src={publicAsset(src)}
                     alt={`${work.title[locale]} — ${i + 1}`}
                     loading="lazy"
                     decoding="async"

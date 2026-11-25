@@ -2,6 +2,7 @@
 
 import { WeaponPreview } from "@/components/three/WeaponPreview";
 import { useSettings } from "@/lib/store";
+import { publicAsset } from "@/lib/paths";
 
 export function WeaponShowcase() {
   const locale = useSettings((s) => s.locale);
@@ -28,7 +29,7 @@ export function WeaponShowcase() {
             <h3 className="mt-2 font-display text-lg font-semibold">The Eye Blade</h3>
           </div>
           <div className="aspect-[4/5] bg-black">
-            <img src="/works/reference/ai-weapon-concept.jpg" alt={en ? "AI concept reference for The Eye Blade weapon" : "Referensi konsep AI untuk senjata The Eye Blade"} className="h-full w-full object-cover" />
+            <img src={publicAsset("/works/reference/ai-weapon-concept.jpg")} alt={en ? "AI concept reference for The Eye Blade weapon" : "Referensi konsep AI untuk senjata The Eye Blade"} className="h-full w-full object-cover" />
           </div>
           <p className="px-5 py-4 text-xs leading-6 text-ink-soft">
             {en

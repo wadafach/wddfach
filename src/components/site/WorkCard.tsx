@@ -6,6 +6,7 @@ import { t } from "@/lib/i18n";
 import { useSettings } from "@/lib/store";
 import type { Locale, Work, WorkCategory } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { publicAsset } from "@/lib/paths";
 
 /** Placeholder bergaris: jujur bahwa gambarnya belum ada, bukan gambar palsu. */
 export function Placeholder({ className, label }: { className?: string; label?: string }) {
@@ -49,7 +50,7 @@ export function WorkCard({ work, index = 0 }: { work: Work; index?: number }) {
         {hasImage ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src={work.cover}
+            src={publicAsset(work.cover)}
             alt={work.title[locale]}
             loading={index < 3 ? "eager" : "lazy"}
             decoding="async"

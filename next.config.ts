@@ -1,9 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  /* GitHub Pages serves static files only. */
+  output: "export",
+  basePath: process.env.GITHUB_ACTIONS ? "/wddfach" : "",
+  assetPrefix: process.env.GITHUB_ACTIONS ? "/wddfach/" : undefined,
+  trailingSlash: true,
+  images: { unoptimized: true },
+  cacheComponents: false,
+  partialPrefetching: false,
   turbopack: {
     rules: {
       "*.css": {
