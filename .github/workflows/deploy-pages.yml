@@ -31,6 +31,13 @@ jobs:
         env:
           NEXT_PUBLIC_PAY_QRIS_IMAGE: /pay/qris.jpg
         run: npm run build
+      - name: Mark static export for GitHub Pages
+        run: touch out/.nojekyll
+      - name: Verify current Next.js export
+        run: |
+          test -f out/index.html
+          grep -q "UI/UX · 3D · Game Concept" out/index.html
+          ! grep -q "Portfolio Preview" out/index.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
