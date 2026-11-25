@@ -80,6 +80,28 @@ Platform yang cepat dipahami hampir selalu mempunyai satu anchor per viewport: s
 - Cosmic background seharusnya menjadi depth layer: gradient, starfield tipis, dan meteor jarang. Planet besar hanya boleh menjadi optional art direction, bukan default wallpaper.
 - WebGL perlu fallback dan reduced-motion; interaksi model 3D harus mempunyai camera default yang sudah enak dilihat sebelum user menyentuhnya.
 
+## Perbandingan penempatan tombol dan pola UX
+
+| Surface | Pola yang berulang pada platform riset | Risiko jika salah | Keputusan wddfach |
+|---|---|---|---|
+| Hero / landing | Google, Apple, Vercel, Stripe menaruh satu CTA dekat value proposition; CTA kedua dibuat quiet atau diturunkan. | User melihat visual tetapi tidak tahu langkah berikutnya. | Primary `View work`/`Start a project` berada setelah copy inti; visual 3D tidak menjadi tombol palsu. |
+| Portfolio index | YouTube, Instagram, Awwwards, Dribbble, Mobbin mengutamakan media/title; filter berada sebelum atau dekat grid. | Filter tersembunyi membuat browsing terasa lambat. | Filter kategori berada sebelum grid, dengan target sentuh besar dan state aktif terbaca tanpa warna saja. |
+| Work detail | Behance, GitHub, Apple case-study pattern meletakkan context dulu, lalu proof, lalu next action. | CTA terlalu awal terasa menjual sebelum trust terbentuk. | `Back to work` di atas; `Discuss a project` setelah summary/proof; gallery tidak menghalangi navigasi. |
+| Services / products | Amazon, Airbnb, Shopify menyatukan image, title, price, scope, availability, dan action. | User harus menebak apa yang dibeli dan berapa biaya. | Kartu menampilkan deliverables, turnaround, unit, price, lalu satu CTA utama `Add to brief`/`Buy service`. |
+| Checkout | WhatsApp, Shopify, Stripe menjaga ringkasan order dekat form dan submit menjadi aksi terakhir. | User kehilangan konteks atau mengirim form kosong. | Summary persisten di desktop, summary di atas form pada mobile; validasi inline; submit hanya aktif ketika data minimum lengkap. |
+| Contact | LinkedIn, Canva, Miro mengurangi blank-canvas anxiety dengan contoh input/brief. | User tidak tahu harus menulis apa. | Placeholder dan contoh brief menjelaskan konteks; CTA memakai kata kerja dan feedback sukses/error terlihat. |
+| Admin | GitHub, Linear, Sentry mengutamakan action proximity, status, dan density informatif. | Admin harus membuka banyak halaman untuk aksi rutin. | Tab jelas, status memakai teks + warna, action berada di baris record dan punya focus state. |
+| Mobile long page | TikTok, Netflix, Spotify menggunakan satu primary interaction per viewport dan repeated rhythm. | Banyak tombol kecil dan whitespace kosong membuat scroll melelahkan. | CTA minimum 44px, stack layout, section spacing dipadatkan, dan action penting diulang setelah content bernilai. |
+
+### Aturan placement yang diturunkan
+
+1. Tombol ditempatkan setelah user memahami nilai/objek yang akan dipilih, bukan sebelum context.
+2. Satu viewport tidak boleh meminta dua keputusan primer sekaligus.
+3. Action yang mengubah state memakai kata kerja jelas: `View`, `Add`, `Continue`, `Submit`, `Buy`; bukan label abstrak.
+4. Tombol yang terlihat harus benar-benar memiliki handler atau link valid; dekorasi tidak boleh memakai elemen button.
+5. Mobile memakai stack satu kolom, target sentuh minimum 44×44px, dan tidak meninggalkan ruang kosong yang tidak memberi fungsi.
+6. Setelah aksi, tampilkan feedback dekat titik aksi: loading, success, validation, atau error.
+
 ## Keputusan revisi wddfach
 
 1. Default cosmic scene tidak lagi merender planet; CSS gradient + starfield + occasional meteor menjadi baseline.

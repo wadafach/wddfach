@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-import { site, payment, activePayChannels, isPaymentConfigured } from "@/lib/site";
+import { site, socials, payment, activePayChannels, isPaymentConfigured } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { useCart, useSettings, cartTotal } from "@/lib/store";
 import { cn, copyToClipboard, formatIDR, groupDigits, isEmail, makeOrderCode, toWaNumber } from "@/lib/utils";
@@ -93,14 +93,18 @@ export function CheckoutPage() {
     return lines.join("\n");
   }, [code, list, total, form, locale]);
 
-  const mailHref = payment.proofEmail
-    ? `mailto:${payment.proofEmail}?subject=${encodeURIComponent(
+  // Kontak publik selalu mengikuti socials; env hanya dipakai bila nanti backend/payment dipisah.
+  const proofEmail = socials.email;
+  const proofWhatsapp = socials.whatsapp;
+
+  const mailHref = proofEmail
+    ? `mailto:${proofEmail}?subject=${encodeURIComponent(
         `${locale === "id" ? "Bukti pembayaran" : "Payment proof"} ${code}`,
       )}&body=${encodeURIComponent(proofMessage)}`
     : "";
 
-  const waHref = payment.proofWhatsapp
-    ? `https://wa.me/${toWaNumber(payment.proofWhatsapp)}?text=${encodeURIComponent(proofMessage)}`
+  const waHref = proofWhatsapp
+    ? `https://wa.me/${toWaNumber(proofWhatsapp)}?text=${encodeURIComponent(proofMessage)}`
     : "";
 
   const goToStep2 = () => {
@@ -294,6 +298,20 @@ export function CheckoutPage() {
                   )}
                 </div>
               </section>
+
+              <div className="flex flex-wrap items-center gap-3 border-t border-line-soft pt-6">
+                <button
+                  type="button"
+                  onClick={goToStep2}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ember px-6 text-sm font-semibold text-[#12100c] shadow-[0_8px_28px_-12px_rgba(255,170,60,0.8)] transition-colors hover:bg-ember-soft"
+                >
+                  {t("cta.checkout", locale)}
+                  <span aria-hidden>→</span>
+                </button>
+                <span className="text-xs text-ink-mute">
+                  {locale === "id" ? "Data bisa dicek lagi sebelum bayar." : "You can review everything before paying."}
+                </span>
+              </div>
             </div>
           )}
 

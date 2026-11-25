@@ -161,16 +161,21 @@ export function HomeHero() {
           </div>
 
           {/* petunjuk scroll */}
-          <div className="mt-6 flex items-center gap-3 pl-1">
-            <span className="grid size-8 place-items-center rounded-full border border-line">
+          <button
+            type="button"
+            onClick={() => document.getElementById("selected-work")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            className="mt-6 inline-flex min-h-11 items-center gap-3 rounded-full border border-line bg-void/70 px-3.5 py-2 text-left shadow-[0_8px_24px_rgba(0,0,0,0.38)] backdrop-blur-sm transition-colors hover:border-ember/60 hover:bg-surface-2/90 focus-visible:outline-2 focus-visible:outline-ember"
+            aria-label={locale === "id" ? "Gulir ke karya pilihan" : "Scroll to selected work"}
+          >
+            <span className="grid size-8 shrink-0 place-items-center rounded-full border border-ember/45 bg-ember/10">
               <svg viewBox="0 0 24 24" className="size-3.5 animate-bounce text-ember" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 5v14M6 13l6 6 6-6" />
               </svg>
             </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-mute">
+            <span className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink-soft">
               {t("home.hero.scroll", locale)}
             </span>
-          </div>
+          </button>
         </aside>
       </div>
     </section>

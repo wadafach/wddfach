@@ -29,10 +29,11 @@ export const site = {
  * Kosongkan ("") kalau belum mau ditampilkan — otomatis disembunyikan.
  */
 export const socials = {
-  email: "halo@wddfach.com",
+  email: "wddfach13@gmail.com",
   instagram: "https://instagram.com/wddfach",
   tiktok: "https://tiktok.com/@wddfach",
-  whatsapp: "https://wa.me/6281234567890",
+  // Nomor Indonesia dalam format internasional untuk wa.me: 0 857... -> 62 857...
+  whatsapp: "https://wa.me/6285745735862",
   // tambahan opsional:
   artstation: "",
   github: "",

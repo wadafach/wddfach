@@ -31,10 +31,10 @@ typography:
     lineHeight: 1.7
   label:
     fontFamily: JetBrains Mono
-    fontSize: "0.6875rem"
+    fontSize: "0.75rem"
     fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "0.16em"
+    lineHeight: 1.5
+    letterSpacing: "0.14em"
 rounded:
   sm: 8px
   md: 12px
@@ -78,7 +78,7 @@ Use a 76rem outer shell, a 4/8 spacing rhythm, and consistent left alignment. Ho
 
 ## Elevation & Depth
 
-Use one border and one quiet surface change before adding blur. Blur is reserved for sticky navigation and overlays. The cosmic background is layered behind content and never used as a card background that reduces contrast.
+Use one border and one quiet surface change before adding blur. Blur is reserved for sticky navigation and overlays. The cosmic background is layered behind content and never used as a card background that reduces contrast. Copy over transparent cosmic layers receives a restrained black text shadow/readable surface so moving stars never break letterforms. Scroll indicators that imply an action are real buttons with a visible background, focus state, and anchor target.
 
 ## Shapes
 

@@ -15,7 +15,7 @@ export function HomeWork() {
   const list = featured.length > 0 ? featured : works.slice(0, 6);
 
   return (
-    <section className="shell py-20 sm:py-28">
+    <section id="selected-work" className="shell py-20 sm:py-28 scroll-mt-24">
       <Reveal>
         <SectionHead
           label={t("home.selected", locale)}

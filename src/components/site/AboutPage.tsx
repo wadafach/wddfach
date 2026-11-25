@@ -80,8 +80,8 @@ export function AboutPage() {
               </p>
               <p className="border-l-2 border-ember/50 pl-5 text-ink">
                 {locale === "id"
-                  ? "Prinsipnya cuma satu: yang aku bikin harus tetap benar waktu dipakai, bukan cuma waktu difoto."
-                  : "One principle: what I make has to stay correct in use, not just in a screenshot."}
+                  ? "Aku suka menyatukan tiap garis sampai bentuknya terasa utuh—dari detail kecil, pelan-pelan jadi sesuatu yang punya jiwa. Buatku, di situlah garis berubah menjadi seni."
+                  : "I like bringing every line together until the form feels whole—from small details, slowly becoming something with a life of its own. That is where lines become art to me."}
               </p>
             </div>
           </Reveal>

@@ -111,6 +111,15 @@ h1, h2, h3, h4 {
   text-wrap: balance;
 }
 
+/* Use on copy placed directly over transparent/cosmic layers. */
+.readable-copy {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.92);
+}
+
+.readable-panel {
+  background: color-mix(in oklab, var(--color-void) 42%, transparent);
+}
+
 ::selection {
   background: color-mix(in oklab, var(--color-ember) 40%, transparent);
   color: #fff;
@@ -176,10 +185,22 @@ select.input option { background-color: var(--color-surface-2); color: var(--col
 
 @utility eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-ink-mute);
+  color: var(--color-ink-soft);
+}
+
+/* All controls remain comfortable on touch screens. */
+button, a { -webkit-tap-highlight-color: transparent; }
+button { min-height: 44px; }
+.input { min-height: 44px; font-size: 1rem; }
+
+@media (max-width: 767px) {
+  .shell { padding-inline: 1rem; }
+  .section-space { padding-block: 3.5rem; }
 }
 
 @utility hairline {
@@ -204,6 +225,13 @@ select.input option { background-color: var(--color-surface-2); color: var(--col
 
 @utility text-glow {
   text-shadow: 0 0 32px color-mix(in oklab, var(--color-ember) 45%, transparent);
+}
+
+/* Readability floor: metadata remains secondary, never tiny or hairline. */
+.text-\[10\.5px\], .text-\[11px\], .text-\[11\.5px\], .text-\[12px\] {
+  font-size: 0.75rem !important;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* ============================================================
